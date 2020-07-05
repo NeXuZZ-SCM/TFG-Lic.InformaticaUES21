@@ -1,0 +1,76 @@
+﻿
+
+/*border bordered*/
+.redondeadoBordes {
+    border-radius: 5px 5px;
+}
+
+.tamanoServicio {
+    font-size:1.5em;
+}
+.tamanoImagenServicio{
+    height:20px;
+    width:20px;
+}
+
+.grid {
+    display:flow-root;
+}
+
+
+.colorFichaRunning {
+    border-top: 15px solid #28A745;
+    border-left: 1px solid #28A745;
+    border-right: 1px solid #28A745;
+    border-bottom: 1px solid #28A745;
+    background-color: #DCDCDC;
+    box-shadow: 2px 2px 5px #28A745;
+}
+.colorFichaStopped {
+    border-top: 15px solid #DC3545;
+    border-left: 1px solid #DC3545;
+    border-right: 1px solid #DC3545;
+    border-bottom: 1px solid #DC3545;
+    background-color: #DCDCDC;
+    box-shadow: 2px 2px 5px #DC3545;
+}
+.colorFichaPause {
+    border-top: 15px solid #fa8231;
+    border-left: 1px solid #fa8231;
+    border-right: 1px solid #fa8231;
+    border-bottom: 1px solid #fa8231;
+    background-color: #DCDCDC;
+    box-shadow: 2px 2px 5px #fa8231;
+}
+
+.fichaEstadosIntermedios {
+    /*opacity:0.5;*/
+}
+
+.colorFichaStartPending {
+    border-top: 15px solid #c0392b;
+    border-left: 1px solid #c0392b;
+    border-right: 1px solid #c0392b;
+    border-bottom: 1px solid #c0392b;
+    background-color: #DCDCDC;
+    box-shadow: 2px 2px 5px #c0392b;
+}
+
+.colorFichaStopPending {
+    border-top: 15px solid #F26F51;
+    border-left: 1px solid #F26F51;
+    border-right: 1px solid #F26F51;
+    border-bottom: 1px solid #F26F51;
+    background-color: #DCDCDC;
+    box-shadow: 2px 2px 5px #F26F51;
+}
+
+.colorFichaPausePending {
+    border-top: 15px solid #DED08B;
+    border-left: 1px solid #DED08B;
+    border-right: 1px solid #DED08B;
+    border-bottom: 1px solid #DED08B;
+    background-color: #DCDCDC;
+    box-shadow: 2px 2px 5px #DED08B;
+}
+

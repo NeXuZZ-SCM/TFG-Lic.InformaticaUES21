@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl" data-ng-init="main()">
+<head>
+    <meta charset="utf-8" />
+    <title>Centor 1.0.3</title>
+    <link rel="icon" href="Media/favicon.ico" type="image/x-icon" />
+
+    <!--<link href="Styles/Reset.css" rel="stylesheet" />-->
+    <link href="Styles/style.css" rel="stylesheet" >
+    <link href="Styles/Index.css" rel="stylesheet" />
+    <script src="Scripts/angular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3 id="TituloDashboard">Rapido Bus</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>Centor 1.0.3</p>
+
+                <li class="active">
+                    <a href="#">Tiempo Real</a>
+                </li>
+
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="" aria-expanded="false" class="dropdown-toggle">Gestion de eventos</a>
+                    <ul class="" id="homeSubmenu">
+                        <li>
+                            <a href="#">Niveles de fatiga</a>
+                        </li>
+                        <li>
+                            <a href="#">GPS</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="active">
+                    <a href="#pageSubmenu" data-toggle="" aria-expanded="false" class="dropdown-toggle">Conductores</a>
+                </li>
+                <li class="active">
+                    <a href="#">Alarmas</a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Acerca de</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fa fa-arrows-h fa-align-left"></i>
+                        <span>Alternar Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Notificaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Usuario</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!--INICIO MONITOR ALARMAS-->
+            <input type="text" name="Buscar" value="" placeholder="Buscar" class="form-control ng-valid ng-dirty" ng-model="searchKeyword">
+            <!--<div class="row he25 bg-warning font-weight-bold ml-1 mr-1 headerFichas">Proyectos Desarrollo</div>-->
+            <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+
+
+
+                <!--<ANY ng-switch="expression">
+                    <ANY ng-switch-when="matchValue1">...</ANY>
+                    <ANY ng-switch-when="matchValue2">...</ANY>
+                    <ANY ng-switch-default>...</ANY>
+                </ANY>-->
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 col-xl-3 h-auto p-1 ng-scope" ng-repeat="x in estados | filter:searchKeyword" ng-switch="x.NivelFatiga">
+                    <div class="p-1 grid h-auto redondeadoBordes colorFichaRunning" ng-switch-when="Bajo">
+                        <!--<div class="border  bordered p-1 d-grid h-auto redondeadoBordes colorFicha">-->
+                        <div class="fa fa-bell fa-2x pull-right"></div>
+                        <h5 class="font-weight-bold">{{x.NombreConductor}}</h5>
+
+                        <div>Fatiga: {{x.NivelFatiga}}</div>
+                        <div>Vehiculo: {{x.Vehiculo}} </div>
+
+                        <br /><br />
+                        <!--<button type="button" title="Kill Service" value="" class="btn btn-dark pull-right fa fa-bomb rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="killService(x.PID)"></button>-->
+                        <button type="button" title="Reiniciar" value="" class="btn btn-dark pull-right fa fa-handshake-o rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="reiniciarServicio(x.NombreConductor)"></button>
+                        <button type="button" title="Reanudar" value="" class="btn btn-dark pull-right fa fa-plus-circle rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="reanudarServicio(x.NombreConductor)"></button>
+                        <!--  <button type="button" title="Pausar" value="" class="btn btn-dark pull-right fa fa-pause rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="pausarServicio(x.NombreConductor)"></button>
+     <button type="button" title="Detener" value="" class="btn btn-dark pull-right fa fa-stop rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="detenerServicio(x.NombreConductor)"></button>
+     <button type="button" title="Iniciar" value="" class="btn btn-dark pull-right fa fa-play rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="iniciarServicio(x.NombreConductor)"></button>-->
+                    </div>
+                    <div class="p-1 grid h-auto redondeadoBordes colorFichaStopped" ng-switch-when="Peligroso">
+                        <!--<div class="border  bordered p-1 d-grid h-auto redondeadoBordes colorFicha">-->
+                        <div class="fa fa-bell fa-2x pull-right"></div>
+                        <h5 class="font-weight-bold">{{x.NombreConductor}}</h5>
+                        <div>Fatiga: {{x.NivelFatiga}}</div>
+                        <div>Vehiculo: {{x.Vehiculo}} </div>
+
+                        <br /><br />
+                        <!--<button type="button" title="Kill Service" value="" class="btn btn-dark pull-right fa fa-bomb rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="killService(x.PID)"></button>-->
+                        <button type="button" title="Reiniciar" value="" class="btn btn-dark pull-right fa fa-handshake-o rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="reiniciarServicio(x.NombreConductor)"></button>
+                        <button type="button" title="Reanudar" value="" class="btn btn-dark pull-right fa fa-plus-circle rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="reanudarServicio(x.NombreConductor)"></button>
+                        <!--  <button type="button" title="Pausar" value="" class="btn btn-dark pull-right fa fa-pause rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="pausarServicio(x.NombreConductor)"></button>
+     <button type="button" title="Detener" value="" class="btn btn-dark pull-right fa fa-stop rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="detenerServicio(x.NombreConductor)"></button>
+     <button type="button" title="Iniciar" value="" class="btn btn-dark pull-right fa fa-play rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="iniciarServicio(x.NombreConductor)"></button>-->
+
+                    </div>
+                    <div class="p-1 grid h-auto redondeadoBordes colorFichaPause" ng-switch-when="Medio">
+                        <!--<div class="border  bordered p-1 d-grid h-auto redondeadoBordes colorFicha">-->
+                        <div class="fa fa-bell fa-2x pull-right"></div>
+                        <h5 class="font-weight-bold">{{x.NombreConductor}}</h5>
+                        <div>Fatiga: {{x.NivelFatiga}}</div>
+                        <div>Vehiculo: {{x.Vehiculo}} </div>
+
+                        <br /><br />
+                        <!--<button type="button" title="Kill Service" value="" class="btn btn-dark pull-right fa fa-bomb rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="killService(x.PID)"></button>-->
+                        <button type="button" title="Reiniciar" value="" class="btn btn-dark pull-right fa fa-handshake-o rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="reiniciarServicio(x.NombreConductor)"></button>
+                        <button type="button" title="Reanudar" value="" class="btn btn-dark pull-right fa fa-plus-circle rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="reanudarServicio(x.NombreConductor)"></button>
+                        <!--  <button type="button" title="Pausar" value="" class="btn btn-dark pull-right fa fa-pause rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="pausarServicio(x.NombreConductor)"></button>
+     <button type="button" title="Detener" value="" class="btn btn-dark pull-right fa fa-stop rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="detenerServicio(x.NombreConductor)"></button>
+     <button type="button" title="Iniciar" value="" class="btn btn-dark pull-right fa fa-play rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="iniciarServicio(x.NombreConductor)"></button>-->
+
+                    </div>
+
+
+                    <div class="p-1 grid h-auto redondeadoBordes colorFichaStartPending fichaEstadosIntermedios" ng-switch-when="Alto">
+                        <!--<div class="border  bordered p-1 d-grid h-auto redondeadoBordes colorFicha">-->
+                        <div class="fa fa-bell fa-2x pull-right"></div>
+                        <h5 class="font-weight-bold">{{x.NombreConductor}}</h5>
+                        <div>Fatiga: {{x.NivelFatiga}}</div>
+                        <div>Vehiculo: {{x.Vehiculo}} </div>
+
+                        <br /><br />
+                        <!-- <button type="button" title="Kill Service" value="" class="btn btn-dark pull-right fa fa-bomb rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="killService(x.PID)"></button>-->
+                        <button type="button" title="Reiniciar" value="" class="btn btn-dark pull-right fa fa-handshake-o rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="reiniciarServicio(x.NombreConductor)"></button>
+                        <button type="button" title="Reanudar" value="" class="btn btn-dark pull-right fa fa-plus-circle rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="reanudarServicio(x.NombreConductor)"></button>
+                        <!--  <button type="button" title="Pausar" value="" class="btn btn-dark pull-right fa fa-pause rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="pausarServicio(x.NombreConductor)"></button>
+                         <button type="button" title="Detener" value="" class="btn btn-dark pull-right fa fa-stop rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="detenerServicio(x.NombreConductor)"></button>
+                         <button type="button" title="Iniciar" value="" class="btn btn-dark pull-right fa fa-play rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="iniciarServicio(x.NombreConductor)"></button>-->
+
+                    </div>
+                    <div class="p-1 grid h-auto redondeadoBordes colorFichaStopPending fichaEstadosIntermedios" ng-switch-when="StopPending">
+                        <!--<div class="border  bordered p-1 d-grid h-auto redondeadoBordes colorFicha">-->
+                        <div class="fa fa-bell fa-2x pull-right"></div>
+                        <h5 class="font-weight-bold">{{x.NombreConductor}}</h5>
+                        <div>Fatiga: {{x.NivelFatiga}}</div>
+                        <div>Vehiculo: {{x.Vehiculo}} </div>
+
+                        <br /><br />
+                        <!-- <button type="button" title="Kill Service" value="" class="btn btn-dark pull-right fa fa-bomb rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="killService(x.PID)"></button> -->
+                        <button type="button" title="Reiniciar" value="" class="btn btn-dark pull-right fa fa-handshake-o rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="reiniciarServicio(x.NombreConductor)"></button>
+                        <button type="button" title="Reanudar" value="" class="btn btn-dark pull-right fa fa-plus-circle rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="reanudarServicio(x.NombreConductor)"></button>
+                        <!--  <button type="button" title="Pausar" value="" class="btn btn-dark pull-right fa fa-pause rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="pausarServicio(x.NombreConductor)"></button>
+     <button type="button" title="Detener" value="" class="btn btn-dark pull-right fa fa-stop rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="detenerServicio(x.NombreConductor)"></button>
+     <button type="button" title="Iniciar" value="" class="btn btn-dark pull-right fa fa-play rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="iniciarServicio(x.NombreConductor)"></button>-->
+
+                    </div>
+                    <div class="p-1 grid h-auto redondeadoBordes colorFichaPausePending fichaEstadosIntermedios" ng-switch-when="PausePending">
+                        <!--<div class="border  bordered p-1 d-grid h-auto redondeadoBordes colorFicha">-->
+                        <div class="fa fa-bell fa-2x pull-right"></div>
+                        <h5 class="font-weight-bold">{{x.NombreConductor}}</h5>
+                        <div>Fatiga: {{x.NivelFatiga}}</div>
+                        <div>Vehiculo: {{x.Vehiculo}} </div>
+
+                        <br /><br />
+                        <!--   <button type="button" title="Kill Service" value="" class="btn btn-dark pull-right fa fa-bomb rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="killService(x.PID)"></button>-->
+                        <button type="button" title="Reiniciar" value="" class="btn btn-dark pull-right fa fa-handshake-o rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="reiniciarServicio(x.NombreConductor)"></button>
+                        <button type="button" title="Reanudar" value="" class="btn btn-dark pull-right fa fa-plus-circle rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="reanudarServicio(x.NombreConductor)"></button>
+                        <!--  <button type="button" title="Pausar" value="" class="btn btn-dark pull-right fa fa-pause rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="pausarServicio(x.NombreConductor)"></button>
+     <button type="button" title="Detener" value="" class="btn btn-dark pull-right fa fa-stop rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="detenerServicio(x.NombreConductor)"></button>
+     <button type="button" title="Iniciar" value="" class="btn btn-dark pull-right fa fa-play rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="iniciarServicio(x.NombreConductor)"></button>-->
+
+                    </div>
+                    <div class="p-1 grid h-auto redondeadoBordes colorFichaPausePending fichaEstadosIntermedios" ng-switch-when="ContinuePending">
+                        <!--<div class="border  bordered p-1 d-grid h-auto redondeadoBordes colorFicha">-->
+                        <div class="fa fa-bell fa-2x pull-right"></div>
+                        <h5 class="font-weight-bold">{{x.NombreConductor}}</h5>
+                        <div>Fatiga: {{x.NivelFatiga}}</div>
+                        <div>Vehiculo: {{x.Vehiculo}} </div>
+
+                        <br /><br />
+                        <!--  <button type="button" title="Kill Service" value="" class="btn btn-dark pull-right fa fa-bomb " data-toggle="modal" data-target="#panelComentario" ng-click="killService(x.PID)"></button>-->
+                        <button type="button" title="Reiniciar" value="" class="btn btn-dark pull-right fa fa-handshake-o rounded-sm " data-toggle="modal" data-target="#panelComentario" ng-click="reiniciarServicio(x.NombreConductor)"></button>
+                        <button type="button" title="Reanudar" value="" class="btn btn-dark pull-right fa fa-plus-circle rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="reanudarServicio(x.NombreConductor)"></button>
+                        <!--  <button type="button" title="Pausar" value="" class="btn btn-dark pull-right fa fa-pause rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="pausarServicio(x.NombreConductor)"></button>
+     <button type="button" title="Detener" value="" class="btn btn-dark pull-right fa fa-stop rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="detenerServicio(x.NombreConductor)"></button>
+     <button type="button" title="Iniciar" value="" class="btn btn-dark pull-right fa fa-play rounded-sm" data-toggle="modal" data-target="#panelComentario" ng-click="iniciarServicio(x.NombreConductor)"></button>-->
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!--FINAL MONITOR ALARMAS-->
+
+        </div>
+    </div>
+
+
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var jQuery_3_3_1 = $.noConflict(true);
+    </script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        jQuery_3_3_1(document).ready(function () {
+            jQuery_3_3_1('#sidebarCollapse').on('click', function () {
+                jQuery_3_3_1('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+
+
+
+    <!--pull-right-->
+    <script src="Scripts/jquery-1.6.4.js"></script>
+
+
+    <script src="Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="signalr/hubs"></script>
+    <script src="Controller.js"></script>
+
+
+    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+
+
+
+</body>
+
+
+
+
+
+
+
+
+    </html>

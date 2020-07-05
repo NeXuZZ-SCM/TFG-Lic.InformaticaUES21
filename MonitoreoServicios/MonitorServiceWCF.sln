@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorServiceWCF", "MonitorServiceWCF\MonitorServiceWCF.csproj", "{81295A12-FA1D-4F92-BA6F-44D29FF4A1B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorWeb", "MonitorWeb\MonitorWeb.csproj", "{7C02C212-62E5-439A-8455-833959199127}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81295A12-FA1D-4F92-BA6F-44D29FF4A1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81295A12-FA1D-4F92-BA6F-44D29FF4A1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81295A12-FA1D-4F92-BA6F-44D29FF4A1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81295A12-FA1D-4F92-BA6F-44D29FF4A1B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C02C212-62E5-439A-8455-833959199127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C02C212-62E5-439A-8455-833959199127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C02C212-62E5-439A-8455-833959199127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C02C212-62E5-439A-8455-833959199127}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED4F05B1-6E00-435E-9890-1DDB9879732A}
+	EndGlobalSection
+EndGlobal
